@@ -1,0 +1,98 @@
+source https://nuget.org/api/v2
+
+group Common
+	source https://nuget.org/api/v2
+
+	nuget Serilog
+	nuget Serilog.Sinks.Stackify
+	nuget Akka.Logger.Serilog
+	nuget FSharp.Core
+	nuget FSharp.Data
+	nuget FSharp.Configuration
+	nuget Akka
+	nuget Akka.FSharp
+	nuget Akka.Persistence
+	nuget Akka.Persistence.FSharp
+	nuget Newtonsoft.Json
+	nuget FsPickler ~> 1.2.21
+	nuget Helios
+	nuget Google.ProtocolBuffers 
+	nuget FSharpx.Collections
+
+github fsprojects/Chessie src/Chessie/ErrorHandling.fs
+
+group Test
+	source https://nuget.org/api/v2
+
+	nuget xunit
+	nuget xunit.runner.visualstudio
+	nuget xunit.abstractions
+	nuget FsUnit.xUnit
+	nuget Foq
+	nuget FsCheck
+	nuget FsCheck.Xunit
+
+group Build
+	source https://nuget.org/api/v2
+
+	nuget FAKE
+	nuget SourceLink.Fake
+	github fsharp/FAKE modules/Octokit/Octokit.fsx
+
+group Azure
+	source https://nuget.org/api/v2
+
+	nuget FSharp.Azure
+	nuget WindowsAzure.Storage
+	nuget Microsoft.Data.Edm 
+	nuget Microsoft.Data.OData 
+	nuget Microsoft.Data.Services.Client 
+	nuget Microsoft.WindowsAzure.ConfigurationManager
+	nuget System.Spatial 
+
+group Web
+	source https://nuget.org/api/v2
+
+	nuget Microsoft.AspNet.Identity.Core
+	nuget Microsoft.AspNet.Identity.Owin
+	nuget Microsoft.AspNet.Mvc
+	nuget Microsoft.AspNet.Razor
+	nuget Microsoft.AspNet.SignalR
+	nuget Microsoft.AspNet.SignalR.Core
+	nuget Microsoft.AspNet.SignalR.JS
+	nuget Microsoft.AspNet.SignalR.SystemWeb
+	nuget Microsoft.AspNet.Web.Optimization
+	nuget Microsoft.AspNet.WebApi
+	nuget Microsoft.AspNet.WebApi.Client
+	nuget Microsoft.AspNet.WebApi.Core
+	nuget Microsoft.AspNet.WebApi.HelpPage
+	nuget Microsoft.AspNet.WebApi.Owin
+	nuget Microsoft.AspNet.WebApi.WebHost
+	nuget Microsoft.AspNet.WebPages
+	nuget Microsoft.CodeDom.Providers.DotNetCompilerPlatform
+	nuget Microsoft.jQuery.Unobtrusive.Validation
+	nuget Microsoft.Net.Compilers
+	nuget Microsoft.Owin
+	nuget Microsoft.Owin.Host.SystemWeb
+	nuget Microsoft.Owin.Security
+	nuget Microsoft.Owin.Security.Cookies
+	nuget Microsoft.Owin.Security.OAuth
+	nuget Microsoft.Web.Infrastructure
+	nuget Microsoft.AspNet.SignalR.Client
+	nuget Microsoft.Owin.Hosting
+	nuget Microsoft.Owin.Host.HttpListener
+	nuget Owin
+	nuget Microsoft.Owin.Diagnostics
+	nuget Microsoft.Owin.Cors
+	nuget bootstrap 
+	nuget Chart.js
+	nuget jQuery
+	nuget jQuery.Validation
+	nuget knockoutjs
+	nuget Modernizr
+	nuget Owin
+	nuget Respond
+	nuget WebGrease
+	nuget Microsoft.Owin.Security.Twitter
+	nuget ElCamino.AspNet.Identity.AzureTable ~> 1.5.4
+	nuget SendGrid 

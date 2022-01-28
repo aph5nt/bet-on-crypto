@@ -1,0 +1,180 @@
+﻿
+@{
+    ViewBag.Title = "FAQ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+ 
+<h2>FAQ</h2>
+<br />
+<h4>What is BetOnCrypto?</h4>
+<p>BetOnCrypto is an online gambling game in which players use digital coins (Bitcoin) to place bets.</p>
+<br />
+<div class="alert alert-info">
+    <h4>Is BetOnCrypto an another binary options site?</h4>
+    <p>
+        No, but it might look similiar at first glance. BetOnCrypto is not inspired by binary options sites. There are few key differences:
+        <br/>
+        <h5>Binary Sites</h5>
+        <ul>
+            <li>
+                bet on price UP or DOWN
+            </li>
+            <li>
+                bet stake can be set
+            </li>
+            <li>
+                usually one bet per given timeframe (1m .. 4hr) can be placed
+            </li>
+            <li>
+                an average win is around 70% of the bet stake
+            </li>
+        </ul>
+
+        <br />
+
+        <h5>BetOnCrypto </h5>
+        <ul>
+            <li>
+                bet on the coinmarketcap.com %7d price change rate for BTC only
+            </li>
+            <li>
+                bet stake is fixed
+            </li>
+            <li>
+                unlimited bets per timeslot
+            </li>
+            <li>
+                win depends on the accumulated prize, number of players and their accuracy (its more like lotto lottery)
+            </li>
+        </ul>
+    </p>
+</div>
+<br />
+
+
+<h4>What can I bet on?</h4>
+<p>
+    Players can bet on the average BTC 7d% change rate. To see the current 7d% change rate, <a href="http://coinmarketcap.com/currencies/views/all/" target="_blank">click here</a>. This rate is
+    updated every 5 minutes.
+</p>
+<br/>
+
+
+
+
+<h4>How do I place a bet?</h4>
+<p>
+    When you register at BetOnCrypto.com, the new BTC address will be created for you.
+    By clicking on the DEPOSIT button, the popup with the address and QR code will appear. Just send your BTC to that address.
+    As soon as your bitcoins will be send, your balance will get updated.
+    To place a bet, just fill your predicted value into the box and press the BET button.
+ 
+</p>
+<br />
+<h4>Can I cancel a bet?</h4>
+<p>Once a bet has been placed, it can not be cancelled.</p>
+<br />
+
+<h4>How do I know if my bet was accepted?</h4>
+<p>
+    When your bet has been accepted you will receive a notification in the upper right corner of the homepage.
+    <br /><br />
+    Click on the game row to view all your placed bets (this functionality is only available to registered users).
+    <br />
+</p>
+<br />
+
+<h4>Is the stake fixed?</h4>
+<p>
+    Yes. The current fixed stake is 0.01 BTC. However, this may be changed at any time by the administrator in order to
+    enhance the betting experience. You can view the current fixed stake on the BetOnCrypto homepage.
+</p>
+<br />
+
+<h4>How many bets can I place?</h4>
+<p>
+    You can place as many bets as you wish.
+</p>
+<br />
+ 
+<h4>What are Game slots?</h4>
+<p>
+    Game slots are defined hourly (e.g. from 10:00 to 11:00) and each bet is allocated to the game slot in which it is
+    placed. Winners are selected within an hour of a game slot’s closing.
+</p>
+<p>
+    Example: Mike has placed a bet by sending 0.01 BTC and predicting a 2.5% 7d% change value. The bet was placed at
+    13:24 on November 23rd, 2015, so it is allocated to the game slot “2015-11-23 13:00”. The slot is closed at 14:00, at
+    which point no further bets may be placed. At 15:00, the game selects winners from all bets placed within the 13:00
+    time slot.
+</p>
+<br />
+
+<h4>How are winners selected?</h4>
+<p>
+    Due to the difficulty in placing precise bets, BetOnCrypto utilizes a win margin which is displayed on the homepage.
+    This margin can be adjusted in accordance with the game’s difficulty at any given time. If no bets exactly match the
+    winning rate, the game will apply the win margin and select players with bets close to the winning rate.
+</p>
+<p>
+    Example: Mike placed a bet predicting a 2.5% change value, but the winning rate was 2.52%. The win margin is set
+    to 0.03, so Mike’s bet wins.
+</p>
+<br />
+
+<h4>How is the prize calculated?</h4>
+<p>
+
+    The game profit is 2% and the prize is 8% of takings for given time slot and the remaining prize. If for given time slot there will be no winners then all bets waggered goes to the next time slot as a prize.
+    Game parameters such as prize, bet ceiling, and win margin can be adjusted by the administrator to enhance the betting experience.
+
+</p>
+<p>
+    Examples:
+    <ol>
+        <li>
+            100 bets are placed for the current game, each worth 0.01 BTC and the prize is 0.5 BTC.
+            Two winners are selected and each receive half of the total takings and prize minus fee for the future prize (8%) and game profit (2%).
+            <br/><br/>
+            Total win: 1.5 BTC<br />
+            Prize: 0.12 BTC<br />
+            Game profit: 0.015 BTC <br/>
+            Individual winnings: 0.675 - network fee <br/><br/>
+        </li>
+        <li>
+            If there are no winners selected, all BTC coins received in bets placed for the current game will roll over
+            to the next game, increasing the prize.
+            <br /><br />
+            Example: 100 bets have been placed in the current game, each worth 0.01 BTC. The current prize is 0.5 BTC. No
+            winners were selected, so the prize for the next game is 1.5 BTC.
+            <br /><br />
+        </li>
+        <li>
+            If the winning rate cannot be determined for any reason (e.g. network issues or coinmarketcap.com
+            downtime) all bets placed for the current game will be refunded minus the BTC transfer fee.
+        </li>
+    </ol>
+</p>
+<br />
+
+<h4>How quickly will I receive my winnings?</h4>
+<p>All winnings are transferred directly to the user wallet address. If you registered with a Twitter account or you have added your Twitter profile, then you will get a tweet with the win notification.</p>
+<br />
+
+
+<h4>How can I check the past game history?</h4>
+<p>
+    If you want to check the previous game winners, then you can click on the one of the past games row. You dont have to be registered to do that.
+    <br />
+</p>
+ 
+
+<h4>How do I change my BetOnCrypto account password?</h4>
+<p>
+    When logged in, click on your email address in the upper right corner of the homepage. This will open the Manage
+    Account page, where you can change your password.
+</p>
+<br />
+<h4>If I have a problem, how can I contact customer service?</h4>
+<p>Send an email to <a href="mailto:BetOnCrypto@gmail.com">BetOnCrypto@gmail.com</a>  </p>
+<br /><br />

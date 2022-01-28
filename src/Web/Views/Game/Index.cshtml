@@ -1,0 +1,408 @@
+﻿@{
+    ViewBag.Title = "Play";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.AntiForgeryToken()
+
+        <!-- RATE CHART -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox-content">
+                    <div class="row">
+
+                        <div class="col-md-7 text-left">
+                            <h4>Prize <i class="fa fa-trophy fa-1x"></i> <prize></prize></h4>
+                        </div>
+                        <div class="col-md-5 text-right">
+                            <short-stat></short-stat>
+                        </div>
+                    </div>
+                    <rate-chart></rate-chart>
+                    <h5><a href="https://coinmarketcap.com/currencies/views/all/" target="_blank">7d % change rate</a> (coinmarketcap.com)</h5>
+                </div>
+
+                <br />
+            </div>
+
+        </div>
+
+        <!-- PLACING BETS -->
+        @if (Request.IsAuthenticated)
+        {
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <balance params="address:'@ViewBag.Address', bet: '@ViewBag.GameBet'"></balance>
+                            </div>
+
+                            <div class="col-md-3">
+                                <bet></bet>
+                            </div>
+
+                            <div class="col-md-3">
+
+
+                                <div class="form-group">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#depositModal">
+                                        Deposit
+                                    </button>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#withdrawModal">
+                                        Withdhraw
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <withdraw></withdraw>
+            <deposit params="address:'@ViewBag.Address'"></deposit>
+        }
+
+        <div class="row">
+            <div class="col-md-12">
+                <current-games></current-games>
+                <br />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <previous-games></previous-games>
+                <br />
+            </div>
+        </div>
+
+        <template id="busy-tmpl">
+            <div data-bind="style : { display: show() ? '' : 'none' }" class="sk-spinner sk-spinner-wave">
+                <div class="sk-rect1"></div>
+                <div class="sk-rect2"></div>
+                <div class="sk-rect3"></div>
+                <div class="sk-rect4"></div>
+                <div class="sk-rect5"></div>
+            </div>
+        </template>
+
+        <template id="balance-tmpl">
+            <div class="row">
+
+                <!-- ko if: Loading() -->
+                <div class="col-md-12">
+                    <busy params="show: true, name: 'balance' "></busy>
+                </div>
+                <!-- /ko -->
+                <!-- ko if: !Loading() -->
+                <div class="col-md-6 text-left">
+                    <h5 class="control-label">Bets: <span data-bind="text: Bets"></span></h5>
+                </div>
+                <div class="col-md-6 text-left">
+                    <h5 class="control-label">Funds: <span data-bind="text: Balance"></span> <b>@ViewBag.Network</b></h5>
+                </div>
+                <!-- /ko -->
+
+            </div>
+            <div>
+                <p><i>The current win margin is set to +-@ViewBag.GameRadius% and the bet amount to @ViewBag.GameBet BTC</i></p>
+            </div>
+        </template>
+
+        <template id="prize-tmpl">
+            <span data-bind="text: prizeFmt()"></span>
+            <b>@ViewBag.Network</b>
+        </template>
+
+        <template id="bet-tmpl">
+            <div class="row">
+                <div class="col-md-6">
+                    <input type="number"
+                           name="VoteFor"
+                           min="-50"
+                           max="50"
+                           step="0.03"
+                           value="0.0"
+                           class="form-control"
+                           data-bind="value: Vote, css : { 'error' : IsNotNumeric }">
+                </div>
+                <div class="col-md-6">
+                    <button class="inline btn btn-primary" data-bind="click: PlaceBet, enable: IsPlaceBetEnabled"
+                            type="button">
+                        <i class="fa fa-star"></i>
+                        Bet
+                    </button>
+                </div>
+
+            </div>
+
+        </template>
+
+        <template id="current-games-tmpl">
+            <div class="ibox-content">
+                <h4>Game slots</h4>
+                <busy params="name: 'current-games' "></busy>
+                <table id="current-games-tbl" class="table table-hover table-striped table-condensed">
+                    <thead>
+                    <th>Opened at</th>
+                    <th>Closing at</th>
+                    <th>Selecting winners at</th>
+                    <th>Status</th>
+                    <th>#Bets</th>
+                    <th>Total amount</th>
+                    </thead>
+                    <tbody data-bind="foreach: data()">
+                        <tr class="clickable accordion-toggle"
+                            data-bind="attr: { 'data-target': '#current-row' + $index(), 'data-toggle' : $parent.dataToggle() }">
+                            <td data-bind="text: $data.OpenedAtFmt()"></td>
+                            <td data-bind="text: $data.ClosedAtFmt()"></td>
+                            <td data-bind="text: $data.DrawAtFmt()"></td>
+                            <td data-bind="text: $data.Status()"></td>
+                            <td data-bind="text: $data.Bets()"></td>
+                            <td data-bind="text: $data.TotalAmountFmt() + ' @ViewBag.Network'"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="8" class="hiddenRow">
+                                <div data-bind="attr: { id: 'current-row' + $index(), 'data-name' : $data.Name() }"
+                                     class="accordian-body collapse">
+                                    <busy params="show: false, name: 'current-games-details', data : $data "></busy>
+                                    <!-- ko if: $data.DetailData().length === 0 -->
+                                    <p>You did not place any bets for this game</p>
+                                    <!-- /ko -->
+                                    <!-- ko if: $data.DetailData().length > 0 -->
+                                    <h5>Bets placed:</h5>
+                                    <table class="table table-hover table-striped table-condensed toggle-arrow-tiny">
+                                        <thead>
+                                        <th>Placed at</th>
+                                        <th>Voted for</th>
+                                        </thead>
+                                        <tbody data-bind="foreach: DetailData()">
+                                            <tr>
+                                                <td data-bind="text: common.formatDatess(PlacedAt)"></td>
+                                                <td data-bind="text: VoteFor"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <!-- /ko -->
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </template>
+
+        <template id="previous-games-tmpl">
+            <div class="ibox-content">
+                <h4>Past games:</h4>
+                <busy params="name: 'previous-games' "></busy>
+                <table id="previous-games-tbl" class="table table-hover table-striped table-condensed toggle-arrow-tiny">
+                    <thead>
+                    <th>Name</th>
+                    <th>Selected at</th>
+                    <th>Status</th>
+                    <th>#Bets</th>
+                    <th>#Winners</th>
+                    <th>Win</th>
+                    <th>Total wagered</th>
+                    <th>Winning vote</th>
+                    </thead>
+                    <tbody data-bind="foreach: data()">
+
+                        <tr data-toggle="collapse"
+                            class="clickable accordion-toggle"
+                            data-bind="attr: { 'data-target': '#previous-row' + $index() }, css: { success: $data.HasWinners() === true, danger: $data.Status() === 'Refunded', pointerRow: $data.Status() === 'Drawed'  }">
+                            <td data-bind="text: $data.Name"></td>
+                            <td data-bind="text: $data.DrawAtFmt()"></td>
+                            <td data-bind="text: $data.StatusFmt()"></td>
+                            <td data-bind="text: $data.Bets"></td>
+                            <td data-bind="text: $data.Winners"></td>
+                            <td><span data-bind="text:$data.WinFmt()"></span> @ViewBag.Network</td>
+                            <td><span data-bind="text: $data.TotalWinFmt()"></span> @ViewBag.Network</td>
+                            <td data-bind="text: $data.WinningVote"></td>
+
+                        </tr>
+                        <tr>
+                            <td colspan="8" class="hiddenRow">
+                                <div data-bind="attr: { id: 'previous-row' + $index(), 'data-name' : $data.Name }" class="accordian-body collapse">
+                                    <!-- ko if: $data.Winners() === 0 && Status() !== 'Refunded' -->
+                                    <p>No winners</p>
+                                    <!-- /ko -->
+                                    <!-- ko if: $data.Winners() > 0 && Status() !== 'Refunded' -->
+                                    <busy params="show: false, name: 'previous-games-details', data : $data "></busy>
+                                    <h5>Winning bets:</h5>
+                                    <table class="table table-hover table-striped table-condensed toggle-arrow-tiny">
+                                        <thead>
+                                        <th>Account</th>
+                                        <th>Placed at</th>
+                                        <th>Voted for</th>
+                                        </thead>
+                                        <tbody data-bind="foreach: DetailData()">
+                                            <tr data-bind="css : { success : Account === window.common.address}">
+                                                <td data-bind="text: Account"></td>
+                                                <td data-bind="text: common.formatDatess(PlacedAt)"></td>
+                                                <td data-bind="text: VoteFor"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <!-- /ko -->
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </template>
+
+        <template id="short-stat-tmpl">
+            <div>
+                <div class="col-md-4 text-right">
+                    <h5>Total wins: <span data-bind="text: TotalWins"></span></h5>
+                </div>
+                <div class="col-md-4 text-right">
+                    <h5>Won in total <span data-bind="text: TotalWonFmt()"></span> @ViewBag.Network</h5>
+                </div>
+                <div class="col-md-4 text-right">
+                    <h5>Highest win: <span data-bind="text: HighestWinFmt()"></span> @ViewBag.Network</h5>
+                </div>
+
+            </div>
+        </template>
+
+        <template id="withdraw-tmpl">
+            <div class="modal inmodal fade" id="withdrawModal" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" data-bind="click : Cancel"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title">Withdraw funds</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form id="withdrawForm" class="">
+
+                                <div class="form-group">
+                                    <input type="text" placeholder="Destination address" class="form-control" data-bind="value: DestinationAddress" required>
+
+                                    <div class="input-group m-b">
+                                        <input id="amount" type="number" step="0.0001" min="0.0005" placeholder="Amount" class="form-control" data-bind="value: Amount" required>
+                                        <span class="input-group-addon"><b>@ViewBag.Network</b></span>
+                                    </div>
+
+                                    <input type="password" placeholder="Password" class="form-control" data-bind="value: Password" required>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-white" data-dismiss="modal" data-bind="click : Cancel">Cancel</button>
+                                    <button type="submit" class="btn btn-primary" data-bind="click : Withdraw">Withdraw</button>
+                                </div>
+
+                                <div>
+                                    <ul data-bind="foreach: ErrorMessages()">
+                                        <li style="color: #ed5565;" data-bind="text: $data"></li>
+                                    </ul>
+                                </div>
+
+                            </form>
+
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </template>
+
+        <template id="deposit-tmpl">
+            <div class="modal inmodal fade" id="depositModal" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title">Deposit funds</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form id="depositForm">
+                                @if (ViewBag.Network == "BTCTEST")
+                                {
+                                    <h3 style="color: red">
+                                        <b>The game is running on a testnet, do not deposit your real coins!</b>
+                                    </h3>
+                                }
+                                <p>Send <b>@ViewBag.Network</b> to the following address: <span data-bind="text: Address"></span></p>
+
+                                <div class="form-group ce">
+                                    <img data-bind="attr: { 'src': Chart }" />
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                                </div>
+                            </form>
+                            @if (ViewBag.Network == "BTCTEST")
+                            {
+
+                                <p>
+                                    BTCTEST Faucets:
+                                    <ul>
+                                        <li>
+                                            <a href="https://testnet.coinfaucet.eu/en" target="_blank">https://testnet.coinfaucet.eu/en</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://kuttler.eu/en/bitcoin/btc/faucet/" target="_blank">https://kuttler.eu/en/bitcoin/btc/faucet/</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://testnet.manu.backend.hamburg/faucet" target="_blank">https://testnet.manu.backend.hamburg/faucet</a>
+                                        </li>
+                                    </ul>
+                                </p>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+        @section scripts {
+            <script type="text/javascript">
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": false,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
+
+                $(document).ready(function () {
+                    ko.options.deferUpdates = true;
+                    ko.applyBindings();
+
+                    $.connection.hub.logging = true;
+                    $.connection.hub.start().done(function () {
+                        console.log("hub started");
+                    });
+
+                    $.connection.hub.disconnected(function () {
+                        setTimeout(function () {
+                            $.connection.hub.start();
+                        }, 1000);
+                    });
+                });
+
+
+            </script>
+
+
+        }

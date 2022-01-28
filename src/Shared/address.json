@@ -1,0 +1,14 @@
+﻿{
+  "type": "address",
+  "data": {
+    "network": "BTCTEST",
+    "address": "2N3Lqtkjh8rbv55LDhL1EEEULFpC8pqxWYA",
+    "balance_change": "-0.00060000",
+    "amount_sent": "0.00840000",
+    "amount_received": "0.00780000",
+    "txid": "7b246e6d1f44a05f99327918399ceedffe8913aa21be5e809100e9ab9d535738",
+    "confirmations": 0,
+    "is_green": true
+  }
+}
+

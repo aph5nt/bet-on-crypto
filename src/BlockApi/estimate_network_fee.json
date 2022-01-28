@@ -1,0 +1,10 @@
+﻿{
+  "status": "fail",
+  "data": {
+    "error_message": "Cannot withdraw funds without Network Fee of 0.00170 BTCTEST. Maximum withdrawable balance is 2.46608 BTCTEST.",
+    "available_balance": "2.46608000",
+    "max_withdrawal_available": "2.46608000",
+    "minimum_balance_needed": "2.50170000",
+    "estimated_network_fee": "0.00170000"
+  }
+}

@@ -1,0 +1,25 @@
+group Common
+	StackifyLib
+	Serilog
+	Serilog.Sinks.Stackify
+	Google.ProtocolBuffers
+	Helios
+	Newtonsoft.Json
+	FSharp.Configuration
+	TweetinviAPI
+	Microsoft.Net.Http
+
+group Azure
+	WindowsAzure.Storage
+	FSharp.Azure
+	Microsoft.Data.Edm 
+	Microsoft.Data.OData 
+	Microsoft.Data.Services.Client 
+	Microsoft.WindowsAzure.ConfigurationManager
+	System.Spatial
+
+group Web
+	System.Net.Http.Formatting.Extension
+
+group Server
+	SlowCheetah

@@ -1,0 +1,50 @@
+﻿
+
+// get balance use POST eveywhere
+https://block.io/api/v2/get_balance/?api_key=2598-9c64-1810-3b70
+{
+  "status" : "success",
+  "data" : {
+    "network" : "BTCTEST",
+    "available_balance" : "0.01000000",
+    "pending_received_balance" : "0.00000000"
+  }
+}
+
+// create user address
+POST https://block.io/api/v2/get_new_address/?api_key=2598-9c64-1810-3b70&label=aph5nt HTTP/1.1
+{
+  "status" : "success",
+  "data" : {
+    "network" : "BTCTEST",
+    "user_id" : 2,
+    "address" : "2Mthu58gzJYP4X13Cj3J2PS2sB1NEJ4tmu8",
+    "label" : "aph5nt"
+  }
+}
+
+// withdraw coints to address
+https://block.io/api/v2/withdraw_from_addresses/?api_key=2598-9c64-1810-3b70&from_addresses=2N3Lqtkjh8rbv55LDhL1EEEULFpC8pqxWYA&to_addresses=2N46o6DPPjLaUJyeFENyKUtoiRGt7eqzzed&amounts=0.0001&pin=pRei6c8bwg1iVgtE4TMo
+
+{
+  "status" : "success",
+  "data" : {
+    "network" : "BTCTEST",
+    "txid" : "e57e583c625b11bdccd5765e99116905d6dfcd71b5b172962c0eefb382f5b78d",
+    "amount_withdrawn" : "0.00060000",
+    "amount_sent" : "0.00010000",
+    "network_fee" : "0.00050000",
+    "blockio_fee" : "0.00000000"
+  }
+}
+
+
+// game will widthraw to n accounts
+
+// The amount withdrawn must at least be 2 DOGE, 0.00002 BTC, or 0.002 LTC. Please keep at least 1 DOGE, 0.0001 BTC, or 0.001 LTC for network fees. 
+// parameter priority={low,medium,high} to increase the network fee paid in the given transaction. More specifically, priorities of low, medium, high will pay 1x, 2x, and 5x the 
+
+// https://block.io/docs/basic
+
+
+

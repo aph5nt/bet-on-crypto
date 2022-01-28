@@ -1,0 +1,72 @@
+﻿@using System.Security.AccessControl
+<!DOCTYPE html>
+<html>
+<head>
+
+    
+    <title>Bet On Crypto - BTC! The cryptocurrency gambling game.</title>
+    <meta name="description" content="The cryptocurrency gambling game where you bet on the coinmarketcap.com price hourly price change. Powered by the Bitcoin!">
+    <link rel="author" href="https://twitter.com/BetOnBTC"/>
+
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width"/>
+    <meta name="blitz" content="mu-5786a4ed-867ee6b8-99248209-f06b9984">
+    @*<meta name="google-site-verification" content="QZp_E6aJ4TweJUIY95YJUTB_o123OZswEU3wxhsgXVg"/>*@
+ 
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet"/>
+    <link href="~/Content/plugins/toastr/toastr.min.css" rel="stylesheet"/>
+    <link href="~/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="~/Content/style.css" rel="stylesheet"/>
+    @Styles.Render("~/Content/css")
+
+</head>
+<body class="boxed-layout pace-done top-navigation">
+
+   
+    <div id="wrapper">
+        <div class="ribbon">
+            <a href="#"> A L P H A version</a>
+        </div>
+        <div id="page-wrapper" class="gray-bg">
+
+           
+            <div class="row border-bottom white-bg">
+                @Html.Partial("_TopNavbar")
+              
+            </div>
+
+            <div class="wrapper wrapper-content">
+                
+                <div class="container">
+                   
+                    @RenderBody()
+                </div>
+            </div>
+            <br />
+            @Html.Partial("_Footer")
+ 
+        </div>
+ 
+            </div>
+ 
+            @Scripts.Render("~/bundles/jquery")
+            @Scripts.Render("~/bundles/jqueryval")
+            @Scripts.Render("~/plugins/slimScroll")
+            @Scripts.Render("~/plugins/metsiMenu")
+            @Scripts.Render("~/plugins/pace")
+            @Scripts.Render("~/bundles/bootstrap")
+            @Scripts.Render("~/bundles/inspinia")
+            @Scripts.Render("~/bundles/libs")
+            @Scripts.Render("~/bundles/components")
+            @Scripts.Render("~/bundles/ga")
+     
+            <script src="~/rapi/hubs"></script>
+            @RenderSection("scripts", required: false)
+
+<script type="text/javascript">
+    $(window).load(function() {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
+</body>
+</html>

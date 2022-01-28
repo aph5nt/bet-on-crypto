@@ -1,0 +1,19 @@
+group Test
+	Foq
+	FsUnit.xUnit
+	xunit
+	xunit.runner.visualstudio
+	xunit.abstractions
+	 
+
+group Common
+	Serilog	 
+	Akka.Logger.Serilog
+	FSharp.Data
+	FSharp.Configuration
+	TweetinviAPI
+	Microsoft.Net.Http
+
+group Azure
+	WindowsAzure.Storage
+	FSharp.Azure

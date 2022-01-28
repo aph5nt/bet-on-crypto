@@ -1,0 +1,11 @@
+﻿{
+  "status": "success",
+  "data": {
+    "network": "BTCTEST",
+    "txid": "e57e583c625b11bdccd5765e99116905d6dfcd71b5b172962c0eefb382f5b78d",
+    "amount_withdrawn": "0.00060000",
+    "amount_sent": "0.00010000",
+    "network_fee": "0.00050000",
+    "blockio_fee": "0.00000000"
+  }
+}

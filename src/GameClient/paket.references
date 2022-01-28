@@ -1,0 +1,12 @@
+group Common
+	Serilog
+	FSharp.Core
+	FSharp.Data
+	FSharp.Configuration
+ 
+group Web
+	Microsoft.AspNet.SignalR
+
+group Azure
+	WindowsAzure.Storage
+	FSharp.Azure

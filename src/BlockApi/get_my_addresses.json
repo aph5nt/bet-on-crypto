@@ -1,0 +1,29 @@
+﻿{
+  "status" : "success",
+  "data" : {
+    "network" : "BTCTEST",
+    "addresses" : [
+      {
+        "user_id" : 0,
+        "address" : "2N3Lqtkjh8rbv55LDhL1EEEULFpC8pqxWYA",
+        "label" : "default",
+        "available_balance" : "0.00780000",
+        "pending_received_balance" : "0.00000000"
+      },
+      {
+        "user_id" : 1,
+        "address" : "2N46o6DPPjLaUJyeFENyKUtoiRGt7eqzzed",
+        "label" : "danke18",
+        "available_balance" : "0.00020000",
+        "pending_received_balance" : "0.00000000"
+      },
+      {
+        "user_id": 2,
+        "address": "2Mthu58gzJYP4X13Cj3J2PS2sB1NEJ4tmu8",
+        "label": "aph5nt",
+        "available_balance": "0.00050000",
+        "pending_received_balance": "0.00000000"
+      }
+    ]
+  }
+}

@@ -1,0 +1,32 @@
+
+Game:
+    Currency : NXT
+    Radius: 1.25
+    Bet: 100
+    Prize: 100
+    TimeDiff: 2.0
+    HealthCheckDiff: 300
+
+PaymentGateway:
+    Account: NXT-55RM-55WK-D2MB-2LNUB
+    Password: reach real keep canvas follow stupid orange bitter unable sky illusion hero
+    Url: http://nxtclient1.cloudapp.net:6876
+
+Profit:
+    Account: NXT-55RM-55WK-D2MB-2LNUB
+    PublicKey : 4f44a2d90976841ccc9db55fefdaaaa581a11f45c1b705e05055d8fae354a153
+
+Storage: BlobEndpoint=https://devbetonnxt.blob.core.windows.net/;QueueEndpoint=https://devbetonnxt.queue.core.windows.net/;TableEndpoint=https://devbetonnxt.table.core.windows.net/;FileEndpoint=https://devbetonnxt.file.core.windows.net/;AccountName=devbetonnxt;AccountKey=CGWrqtmi7poTqmefgKAfJYC06Vv3yCfMuC4OaXPkDETjUgzuwm1a/cYcgBd1D6maGDHJ6/YNxE5ZqRwg1FctOQ==
+
+Scheduler:
+    Receive: 5.0
+    Rate: 600.0
+    PlayGame: 3600.0
+         
+Systems:
+    Web: "WebSystem"
+    Server: "ServerSystem"
+
+ActorSelection:
+    RateActor: "akka.tcp://ServerSystem@localhost:9081/user/rate"
+    WebRateProxyActor: "akka.tcp://WebSystem@localhost:9080/user/WebRateProxyActor"

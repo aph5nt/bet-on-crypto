@@ -1,0 +1,7 @@
+﻿{
+  "status": "fail",
+  "data": {
+    "error_message": "One or more addresses or labels do not exist on your account for Network=BTCTEST, or are invalid for Network=BTCTEST."
+  }
+}
+

@@ -1,0 +1,29 @@
+﻿<nav class="navbar navbar-static-top" role="navigation">
+    <div class="navbar-header">
+        <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
+            <i class="fa fa-reorder"></i>
+        </button>
+        @Html.ActionLink("Bet on Crypto!", "Index", "Game", new { area = "" }, new { @class = "navbar-brand" } )
+       
+    </div>
+    <div class="navbar-collapse collapse" id="navbar">
+        <ul class="nav navbar-nav">
+            <li>@Html.ActionLink("Play", "Index", "Game", new {area = ""}, null)</li>
+            @*<li><a href="https://nxtforum.org/" target="_blank">Invest</a></li>*@
+            <li>@Html.ActionLink("FAQ", "Faq", "Game", new {area = ""}, null)</li>
+
+        </ul>
+
+
+
+        <ul class="nav navbar-top-links navbar-right">
+            
+            <li>
+                @Html.Partial("_LoginPartial")
+            </li>
+           
+        </ul>
+
+       
+    </div>
+</nav>

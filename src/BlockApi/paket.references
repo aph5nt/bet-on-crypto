@@ -1,0 +1,5 @@
+group Common
+ 
+	FSharp.Core
+	FSharp.Data
+	 

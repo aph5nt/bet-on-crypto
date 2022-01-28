@@ -1,0 +1,16 @@
+group Common
+	Serilog
+	FSharp.Configuration
+	FSharp.Core
+	FSharp.Data
+	File:ErrorHandling.fs . 
+
+group Azure
+	FSharp.Azure
+	WindowsAzure.Storage
+
+
+
+
+
+ 
